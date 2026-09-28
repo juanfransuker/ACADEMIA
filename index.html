@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LA ACADEMIA DE JUANFRAN - Menú Principal</title>
+  <style>
+    /* ==========================================================================
+       VARIABLES Y REINICIO
+       ========================================================================== */
+    :root {
+      --bg-gradient: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 50%, #fbc2eb 100%);
+      --card-bg: rgba(255, 255, 255, 0.92);
+      
+      --color-math-start: #ff7e5f;
+      --color-math-end: #feb47b;
+      --color-math-shadow: #d45030;
+      
+      --color-english-start: #4facfe;
+      --color-english-end: #00f2fe;
+      --color-english-shadow: #1b85ca;
+      
+      --color-reading-start: #43e97b;
+      --color-reading-end: #38f9d7;
+      --color-reading-shadow: #1fb956;
+      
+      --text-main: #2d3748;
+      --font-family: 'Comic Sans MS', 'Chalkboard SE', 'Fredoka', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: var(--bg-gradient);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 15px 40px;
+      position: relative;
+      overflow-x: hidden;
+      color: var(--text-main);
+    }
+
+    /* ==========================================================================
+       ILUSTRACIONES Y DIBUJOS FLOTANTES DE FONDO
+       ========================================================================== */
+    .background-decorations {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .deco-item {
+      position: absolute;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+      animation: float 6s ease-in-out infinite;
+      opacity: 0.85;
+    }
+
+    /* Posicionamiento estratégico de elementos flotantes */
+    .d1  { top: 5%;  left: 4%;  animation-delay: 0s;   transform: rotate(-12deg); }
+    .d2  { top: 8%;  right: 5%; animation-delay: 1s;   transform: rotate(15deg); }
+    .d3  { top: 28%; left: 2%;  animation-delay: 2s;   transform: rotate(8deg); }
+    .d4  { top: 32%; right: 3%; animation-delay: 0.5s; transform: rotate(-10deg); }
+    .d5  { top: 55%; left: 5%;  animation-delay: 1.5s; transform: rotate(12deg); }
+    .d6  { top: 58%; right: 4%; animation-delay: 2.5s; transform: rotate(-15deg); }
+    .d7  { top: 80%; left: 3%;  animation-delay: 3s;   transform: rotate(5deg); }
+    .d8  { top: 82%; right: 6%; animation-delay: 1.8s; transform: rotate(-8deg); }
+    .d9  { top: 18%; left: 12%; animation-delay: 2.2s; font-size: 2rem; }
+    .d10 { top: 70%; right: 12%;animation-delay: 0.8s; font-size: 2rem; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(8deg); }
+    }
+
+    /* ==========================================================================
+       CONTENEDOR PRINCIPAL
+       ========================================================================== */
+    .container {
+      width: 100%;
+      max-width: 760px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+    }
+
+    /* ==========================================================================
+       CABECERA Y TÍTULO
+       ========================================================================== */
+    header {
+      text-align: center;
+      background: var(--card-bg);
+      padding: 25px 30px;
+      border-radius: 35px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12),
+                  inset 0 4px 0 rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(8px);
+      width: 100%;
+      border: 4px solid #ffffff;
+      animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .main-title {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 900;
+      color: #ff3366;
+      text-shadow: 3px 3px 0px #fff,
+                   6px 6px 0px rgba(0, 0, 0, 0.1);
+      letter-spacing: 1px;
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .main-title .emoji-title {
+      display: inline-block;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    .subtitle {
+      font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+      color: #4a5568;
+      margin-top: 10px;
+      font-weight: 700;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    /* ==========================================================================
+       MENÚ DE BOTONES
+       ========================================================================== */
+    .menu-grid {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .btn-card {
+      display: flex;
+      align-items: center;
+      padding: 22px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                  box-shadow 0.25s ease;
+      border: 4px solid #ffffff;
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* Efectos al pasar el ratón y pulsar */
+    .btn-card:hover {
+      transform: translateY(-6px) scale(1.02);
+    }
+
+    .btn-card:active {
+      transform: translateY(2px) scale(0.98);
+    }
+
+    .btn-card:focus-visible {
+      outline: 5px solid #ffe600;
+      outline-offset: 4px;
+    }
+
+    /* Estilos individuales por botón */
+    .btn-math {
+      background: linear-gradient(135deg, var(--color-math-start), var(--color-math-end));
+      box-shadow: 0 10px 0 var(--color-math-shadow), 0 15px 25px rgba(255, 126, 95, 0.4);
+    }
+    .btn-math:hover {
+      box-shadow: 0 14px 0 var(--color-math-shadow), 0 20px 30px rgba(255, 126, 95, 0.5);
+    }
+    .btn-math:active {
+      box-shadow: 0 4px 0 var(--color-math-shadow), 0 8px 15px rgba(255, 126, 95, 0.4);
+    }
+
+    .btn-english {
+      background: linear-gradient(135deg, var(--color-english-start), var(--color-english-end));
+      box-shadow: 0 10px 0 var(--color-english-shadow), 0 15px 25px rgba(79, 172, 254, 0.4);
+    }
+    .btn-english:hover {
+      box-shadow: 0 14px 0 var(--color-english-shadow), 0 20px 30px rgba(79, 172, 254, 0.5);
+    }
+    .btn-english:active {
+      box-shadow: 0 4px 0 var(--color-english-shadow), 0 8px 15px rgba(79, 172, 254, 0.4);
+    }
+
+    .btn-reading {
+      background: linear-gradient(135deg, var(--color-reading-start), var(--color-reading-end));
+      box-shadow: 0 10px 0 var(--color-reading-shadow), 0 15px 25px rgba(67, 233, 123, 0.4);
+    }
+    .btn-reading:hover {
+      box-shadow: 0 14px 0 var(--color-reading-shadow), 0 20px 30px rgba(67, 233, 123, 0.5);
+    }
+    .btn-reading:active {
+      box-shadow: 0 4px 0 var(--color-reading-shadow), 0 8px 15px rgba(67, 233, 123, 0.4);
+    }
+
+    /* Contenido interno de los botones */
+    .btn-icon {
+      font-size: clamp(2.8rem, 8vw, 4rem);
+      margin-right: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 22px;
+      padding: 10px 15px;
+      backdrop-filter: blur(4px);
+      box-shadow: inset 0 2px 4px rgba(255,255,255,0.4);
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-card:hover .btn-icon {
+      transform: scale(1.15) rotate(-5deg);
+    }
+
+    .btn-content {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .btn-title {
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+      line-height: 1.1;
+    }
+
+    .btn-subtitle {
+      font-size: clamp(0.95rem, 3vw, 1.25rem);
+      font-weight: 700;
+      margin-top: 6px;
+      opacity: 0.95;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-arrow {
+      margin-left: auto;
+      font-size: 2rem;
+      opacity: 0.8;
+      transition: transform 0.3s ease;
+      padding-left: 10px;
+    }
+
+    .btn-card:hover .btn-arrow {
+      transform: translateX(8px) scale(1.2);
+      opacity: 1;
+    }
+
+    /* ==========================================================================
+       CONFETI / DECORACIÓN INTERACTIVA AL HACER CLIC
+       ========================================================================== */
+    .particle {
+      position: absolute;
+      pointer-events: none;
+      border-radius: 50%;
+      animation: particlePop 0.8s ease-out forwards;
+      z-index: 99;
+    }
+
+    @keyframes particlePop {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--dx), var(--dy)) scale(0);
+        opacity: 0;
+      }
+    }
+
+    /* ==========================================================================
+       ANIMACIONES
+       ========================================================================== */
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    /* Entrada escalonada de botones */
+    .btn-math { animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s backwards; }
+    .btn-english { animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s backwards; }
+    .btn-reading { animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s backwards; }
+
+    /* ==========================================================================
+       ADAPTABILIDAD RESPONSIVE
+       ========================================================================== */
+    @media (max-width: 480px) {
+      body {
+        padding: 15px 10px 30px;
+      }
+      header {
+        padding: 18px 15px;
+        border-radius: 25px;
+      }
+      .btn-card {
+        padding: 16px 18px;
+        border-radius: 22px;
+      }
+      .btn-icon {
+        margin-right: 14px;
+        padding: 8px 10px;
+        border-radius: 16px;
+      }
+      .btn-arrow {
+        display: none; /* Ocultar flecha en pantallas muy pequeñas para ganar espacio */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Elementos Ilustrativos de Fondo -->
+  <div class="background-decorations" aria-hidden="true">
+    <div class="deco-item d1">⭐</div>
+    <div class="deco-item d2">🎨</div>
+    <div class="deco-item d3">✏️</div>
+    <div class="deco-item d4">🚀</div>
+    <div class="deco-item d5">🧩</div>
+    <div class="deco-item d6">🎈</div>
+    <div class="deco-item d7">📐</div>
+    <div class="deco-item d8">🧸</div>
+    <div class="deco-item d9">✨</div>
+    <div class="deco-item d10">🌟</div>
+  </div>
+
+  <div class="container">
+    <!-- Cabecera / Título Principal -->
+    <header>
+      <h1 class="main-title">
+        <span class="emoji-title">🎓</span>
+        <span>LA ACADEMIA DE JUANFRAN</span>
+        <span class="emoji-title">📚</span>
+      </h1>
+      <p class="subtitle">"¡Aprender es una aventura!"</p>
+    </header>
+
+    <!-- Menú Principal con 3 Botones Grandes -->
+    <nav class="menu-grid" aria-label="Menú principal de actividades">
+      
+      <!-- Botón 1: Matemáticas -->
+      <a href="matematicas.html" class="btn-card btn-math" onclick="triggerConfetti(event)">
+        <div class="btn-icon" aria-hidden="true">🧮 ➕ 🔢</div>
+        <div class="btn-content">
+          <span class="btn-title">MATEMÁTICAS</span>
+          <span class="btn-subtitle">"¡Números, retos y diversión!"</span>
+        </div>
+        <div class="btn-arrow" aria-hidden="true">➔</div>
+      </a>
+
+      <!-- Botón 2: Inglés -->
+      <a href="ingles.html" class="btn-card btn-english" onclick="triggerConfetti(event)">
+        <div class="btn-icon" aria-hidden="true">🔤 🗣️ 🇬🇧</div>
+        <div class="btn-content">
+          <span class="btn-title">INGLÉS</span>
+          <span class="btn-subtitle">"¡Words, games & fun!"</span>
+        </div>
+        <div class="btn-arrow" aria-hidden="true">➔</div>
+      </a>
+
+      <!-- Botón 3: Aprendo a leer -->
+      <a href="aprendo-a-leer.html" class="btn-card btn-reading" onclick="triggerConfetti(event)">
+        <div class="btn-icon" aria-hidden="true">📚 🔤 📖</div>
+        <div class="btn-content">
+          <span class="btn-title">APRENDO A LEER</span>
+          <span class="btn-subtitle">"¡Letras, palabras y cuentos!"</span>
+        </div>
+        <div class="btn-arrow" aria-hidden="true">➔</div>
+      </a>
+
+    </nav>
+  </div>
+
+  <script>
+    /**
+     * Efecto visual de partículas coloridas al pulsar un botón.
+     * Retarda levemente la navegación para que el niño aprecie la animación interactiva.
+     */
+    function triggerConfetti(e) {
+      e.preventDefault();
+      const targetUrl = e.currentTarget.getAttribute('href');
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX || (rect.left + rect.width / 2);
+      const clickY = e.clientY || (rect.top + rect.height / 2);
+
+      const colors = ['#ff3366', '#4facfe', '#43e97b', '#ffe600', '#ff7e5f', '#9b5de5'];
+
+      for (let i = 0; i < 24; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        const size = Math.floor(Math.random() * 12) + 8;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        particle.style.left = clickX + 'px';
+        particle.style.top = clickY + 'px';
+
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = Math.random() * 120 + 40;
+        const dx = Math.cos(angle) * velocity + 'px';
+        const dy = Math.sin(angle) * velocity + 'px';
+
+        particle.style.setProperty('--dx', dx);
+        particle.style.setProperty('--dy', dy);
+
+        document.body.appendChild(particle);
+
+        setTimeout(() => particle.remove(), 800);
+      }
+
+      // Redirección suave tras la animación del clic
+      setTimeout(() => {
+        window.location.href = targetUrl;
+      }, 250);
+    }
+  </script>
+</body>
+</html>
